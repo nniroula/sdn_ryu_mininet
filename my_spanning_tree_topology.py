@@ -1,5 +1,6 @@
 from mininet.topo import Topo
 from mininet.link import TCLink
+from mininet.net import Mininet
 
 
 class MySpanningTreeTopology(Topo):
@@ -47,3 +48,12 @@ class MySpanningTreeTopology(Topo):
 
 # create a dictionary to run custom topology in mininet
 topology_dictionary = {'spanningTreeTopology': (lambda: MySpanningTreeTopology())}
+
+# invoke topology when this file is run
+def topo_invocation():
+    topo = MySpanningTreeTopology()
+    net = Mininet(controller = None, topo = topo, link = TCLink, cleanup = True)
+
+if __name__ == '__main__':
+    topo_invocation()
+
